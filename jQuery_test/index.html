@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery</title>
+
+</head>
+<body>
+
+<div id="box">
+  <p>11111</p>
+  <p>22222</p>
+  <p>33333</p>
+</div>
+
+<script type="text/javascript" src="./lib/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+  // (function (window) {
+  //   var jquery = new jQuery()
+  //   jQuery.prototype.find = function(){}
+  //   window.$ = window.jQuery = jquery
+  // })(window)
+  // window.onload = function(){ // 页面(页面中所有的内容，文档，图片。。。)加载完执行
+  //   console.log('onload');
+  // }
+  $(function () { // document.ready 文档加载完毕
+    // console.log('document.ready()');
+
+    $('#box').click(function () {
+      // promise  then
+      // 读写二合一， 隐式迭代
+      // 链式调用： jQuery对象的方法的返回值还是一个jQuery对象
+      // $(this).find('p').css('background', 'red');
+
+
+
+      // 操作DOM
+      // $(this).append('<p>我是新添加的p标签</p>');
+      // $(this).after('<p>我是新添加的p标签</p>');
+      // $(this).empty()
+      $(this).remove()
+    })
+
+  });
+
+</script>
+</body>
+</html>
