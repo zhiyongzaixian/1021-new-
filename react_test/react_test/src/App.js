@@ -1,73 +1,38 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {Route, Link, Redirect,Switch, NavLink} from 'react-router-dom'
+
+import Home from './components/Home'
+import Personal from './components/Personal'
+import Test from './components/test'
+import HomeChild from './components/HomeChild'
 
 class App extends React.Component  {
-  state = {
-    num: 1
-  }
   constructor(props){
     super(props);
   }
   
-  componentWillMount(){
-    // debugger
   
-    console.log('-------- componentWillMount ------');
-  }
-  
-  componentDidMount() {
-    console.log('-------- componentDidMount 组件挂载完毕------');
-    // React修改状态的时候在自身的钩子函数中修改是异步的，非自身的钩子函数中是同步的
-    
-    // this.setState,   小程序： this.setData
-    // this.setState({
-    //   num: 2
-    // }, () => {
-    //   console.log(this.state.num); // 2
-    // })
-    // console.log(this.state.num); // 1
-    
-    // setTimeout(() => {
-    //   this.setState({
-    //     num: 2
-    //   })
-    //   console.log(this.state.num); // 2
-    // }, 2000)
-    
-    
-    this.intervalId = setInterval(() => {
-      console.log('---------- setInterval() ------');
-      this.setState({
-        num: ++this.state.num
-      })
-    }, 1000)
-    
-    // 销毁组件
-    // React销毁组件是直接将之前插入页面的真实dom对象片段直接从页面容器中删除
-    setTimeout(() => {
-      ReactDOM.unmountComponentAtNode(document.getElementById('root'))
-    }, 4000)
-    
-  }
-  componentWillUpdate(){
-    console.log('-------- componentWillUpdate ------');
-  
-  }
-  
-  componentDidUpdate() {
-    console.log('-------- componentDidUpdate 组件更新完毕------');
-    
-  }
-  
-  componentWillUnmount(){
-    console.log('-------- componentWillUnmount 组件即将要卸载------');
-    clearInterval(this.intervalId)
-  }
   render(){
     return (
       <div>
         <h1>App 组件</h1>
-        <p>{this.state.num}</p>
+        <Link to='/home'>home链接</Link> &nbsp;
+        {/*<NavLink to='/personal/123'>personal链接</NavLink>*/}
+        <NavLink to='/personal'>personal链接</NavLink>
+        {/*当有二级路由的时候，父路由组件不使用精准匹配exact*/}
+        {/*<Route path='/home' component={Home} exact></Route>*/}
+        
+        {/*Switch好处： 一旦匹配成功后，就停止匹配*/}
+        <Switch>
+          {/*<Route path='/' component={Test} ></Route>*/}
+          <Route path='/home' component={Home} ></Route>
+          {/*<Route path='/home/homeChild' component={HomeChild}></Route>*/}
+          {/*<Route path='/personal/:id' component={Personal}></Route>*/}
+          <Route path='/personal' render={() => <Personal num={123}/>}></Route>
+          <Redirect to='/home'></Redirect>
+        </Switch>
+       
       </div>
     )
   }
