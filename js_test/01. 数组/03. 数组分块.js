@@ -14,7 +14,7 @@ let arr = [1,2,3,4,5,6,7,8,9]  // lodash.chunk(arr, 3)
 // console.log(arr);
 
 function chunk(arr, size) {
-  if(!Array.isArray(arr) || size <=0 ||Object.prototype.toString.call(num).slice(8, -1) !== 'Number' || size >= arr.length){
+  if(!Array.isArray(arr) || size <=0 ||Object.prototype.toString.call(size).slice(8, -1) !== 'Number' || size >= arr.length){
     return arr;
   }
   
